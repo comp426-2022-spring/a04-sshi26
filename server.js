@@ -76,9 +76,13 @@ app.get('/app/', (req, res) => {
     });
 
 if (isDebug) {
+    // app.get('/app/error', (req, res) => {
+    //     res.send("Error test successful.");
+    // });
+
     app.get('/app/error', (req, res) => {
-        res.send("Error test successful.");
-    });
+        throw new Error('Error test successful.') // Express will catch this on its own.
+      })
 
     app.get('/app/log/access', (req, res) => {
         const logCursor = db.prepare("SELECT * FROM accesslog");
