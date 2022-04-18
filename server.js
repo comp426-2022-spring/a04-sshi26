@@ -115,7 +115,7 @@ app.all('*', function(req, res){
 });
 
 
-if (!log) {
+if (!isLog) {
     // Use morgan for logging to files
     // Create a write stream to append (flags: 'a') to a file
     const WRITESTREAM = fs.createWriteStream('access.log', { flags: 'a' })
