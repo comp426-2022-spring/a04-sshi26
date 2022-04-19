@@ -45,6 +45,8 @@ for (let i = 0; i<myArgs.length; i++) {
 }
 
 app.use( (req, res, next) => {
+    const data = db.prepare("SELECT * FROM accesslog").get(); 
+    res.locals.data = data; 
     let logdata = {
         remoteaddr: req.ip,
         remoteuser: req.user,
@@ -87,11 +89,8 @@ app.get('/app/error', (req, res) => {
     })
 
 app.get('/app/log/access', (req, res) => {
-    const logCursor = db.prepare("SELECT * FROM accesslog");
-    console.log(logCursor.get());
+    res.send(res.locals.data);
 });
-
-
 
 // /app/flip/ endpoint 
 app.get('/app/flip/', (req, res) => {
