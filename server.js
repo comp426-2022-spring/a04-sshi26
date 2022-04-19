@@ -1,6 +1,7 @@
 // Require Express.js
 const express = require('express')
 const fs = require("fs");
+const morgan = require("morgan");
 const app = express()
 
 const {db} = require('./database.js');
