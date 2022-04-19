@@ -77,20 +77,20 @@ app.get('/app/', (req, res) => {
         res.end(res.statusCode+ ' ' +res.statusMessage)
     });
 
-if (isDebug) {
-    // app.get('/app/error', (req, res) => {
-    //     res.send("Error test successful.");
-    // });
 
-    app.get('/app/error', (req, res) => {
-        throw new Error('Error test successful.') // Express will catch this on its own.
-      })
+// app.get('/app/error', (req, res) => {
+//     res.send("Error test successful.");
+// });
 
-    app.get('/app/log/access', (req, res) => {
-        const logCursor = db.prepare("SELECT * FROM accesslog");
-        console.log(logCursor.get());
-    });
-}
+app.get('/app/error', (req, res) => {
+    throw new Error('Error test successful.') // Express will catch this on its own.
+    })
+
+app.get('/app/log/access', (req, res) => {
+    const logCursor = db.prepare("SELECT * FROM accesslog");
+    console.log(logCursor.get());
+});
+
 
 
 // /app/flip/ endpoint 
