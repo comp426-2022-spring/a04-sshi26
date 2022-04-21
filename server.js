@@ -58,7 +58,7 @@ app.use( (req, res, next) => {
         values (1234)`; 
     db.prepare(sqlStatement).run(); 
 
-    const data = db.prepare("SELECT * FROM accesslog").get(); 
+    const data = db.prepare("SELECT * FROM accesslog").all(); 
     res.locals.data = data; 
     console.log(data); 
 
